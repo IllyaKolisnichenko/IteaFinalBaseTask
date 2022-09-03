@@ -1,0 +1,3 @@
+lake 10 10 roach crucuian bream som
+river 5 15 fatheadCarp carp pike trout
+sea 10 20 hearing perch dorado salmon
