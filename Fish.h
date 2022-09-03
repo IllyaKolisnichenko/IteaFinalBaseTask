@@ -7,13 +7,22 @@ class fish {
 private:
     int minWeight{};
     int maxWeight{};
-    int priñeOfFish{};
+    int priceOfFish{};
     int totalFishWeight{};
-    std::string path = "Fish.txt";
+    std::string path;
+
 public:
+    void setFishFilePath(std::string path_) {
+        path = path_;
+    }
+
+    std::string getFishFilePath() {
+        return path;
+    }
+
     void getFishInfo(std::string fishName) {
         std::ifstream fishFile;
-        fishFile.open (path);
+        fishFile.open(path);
 
         if (!fishFile.is_open())
         {
@@ -31,7 +40,7 @@ public:
                 fishFile >> str;
                 maxWeight = stoi(str);
                 fishFile >> str;
-                priñeOfFish = stoi(str);
+                priceOfFish = stoi(str);
                 break;
             }
         }
@@ -46,10 +55,9 @@ public:
         return fishWeight;
     }
     int getPriceOfFish() {
-        return priñeOfFish;
+        return priceOfFish;
     }
     int getTotalFishWeight() {
         return totalFishWeight;
     }
 };
-

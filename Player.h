@@ -5,43 +5,42 @@
 
 class player {
 public:
-	void setPlayerName() {
-		std::cout << "Please enter your name: ";
-		std::cin >> name;
-	}
+    void setPlayerName() {
+        std::cout << "Please enter your name: ";
+        std::cin >> name;
+    }
 
-	std::string getPlayerName() {
-		return name;
-	}
+    std::string getPlayerName() {
+        return name;
+    }
 
-	void setNumberOfFish(int fish) {
-		numberOfFish += fish;
-	}
+    void setNumberOfFish(int fish) {
+        numberOfFish += fish;
+    }
 
-	int getNumberOfFish() {
-		return numberOfFish;
-	}
+    int getNumberOfFish() {
+        return numberOfFish;
+    }
 
-	void addMoney(int currentMoney) {
-		money += currentMoney;
-	}
+    void addMoney(int currentMoney) {
+        money += currentMoney;
+    }
 
-	void subMoney(int currentMoney) {
-		money -= currentMoney;
-	}
+    void subMoney(int currentMoney) {
+        money -= currentMoney;
+    }
 
-	int getMoney() {
-		return money;
-	}
+    int getMoney() {
+        return money;
+    }
 
-	bool pullFish(fishingGear* fishingGear) {
-		return fishingGear->pullFish();
-	}
+    bool pullFish(fishingGear* fishingGear) {
+        return fishingGear->pullFish();
+    }
 private:
-	const int startMoney{ 100 };
-	std::string name;
-	int numberOfFish{};
-	int totalOfFish{};
-	int money{ startMoney };
-
+    const int startMoney{ 100 };
+    std::string name;
+    int numberOfFish{};
+    int totalOfFish{};
+    int money{ startMoney };
 };
