@@ -18,15 +18,15 @@ protected:
 
 class Crucian : public Fish {
 public:
-    bool baitPreferenses( std::string baitName ) override;
+    bool baitPreferenses( const std::string baitName ) override;
 };
 
 class Perch : public Fish {
 public:
-    bool baitPreferenses( std::string baitName ) override;
+    bool baitPreferenses( const std::string baitName ) override;
 };
 
 class Pike : public Fish {
 public:
-    bool baitPreferenses( std::string baitName ) override;
+    bool baitPreferenses( const std::string baitName [[maybe_unused]] ) override;
 };

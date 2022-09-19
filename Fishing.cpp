@@ -2,38 +2,25 @@
 #include <string>
 #include <chrono>
 
-#include "Fish.h"
-#include "Water.h"
-#include "Bait.h"
 #include "ReadFromFile.h"
 #include "Game.h"
 #include "Menu.h"
 #include "WriteToFile.h"
+#include "StructData.h"
 
 int main() {
     srand( time( nullptr ) );
     int timeOfGame {};
 
-    //fish
-    Crucian crucian;
-    Perch perch;
-    Pike pike;
+    DataFish dataFish;
+    DataWater dataWater;
+    DataBait dataBait;
 
-    //water
-    River river;
-    Lake lake;
-    Reservoir reservoir;
+    ReadFromFile::readFishFromFile( dataFish );
+    ReadFromFile::readBaitFromFile( dataBait );
+    ReadFromFile::readWaterFromFile( dataWater );
 
-    //bait
-    Bait bloodworm;
-    Bait earthworm;
-    Bait maggot;
-
-    ReadFromFile::readFishFromFile( crucian, perch, pike );
-    ReadFromFile::readBaitFromFile( bloodworm, earthworm, maggot );
-    ReadFromFile::readWaterFromFile( river, lake, reservoir );
-
-    Game game( river, lake, reservoir, crucian, perch, pike, bloodworm, earthworm, maggot );
+    Game game( dataFish, dataWater, dataBait );
     int choise {};
 
 
@@ -41,7 +28,7 @@ int main() {
 
     do {
         auto begin { std::chrono::steady_clock::now() };
-        
+
         Menu::choiseMenu( game, choise );
 
         timeOfGame += std::chrono::duration_cast< std::chrono::minutes >( std::chrono::steady_clock::now() - begin ).count();

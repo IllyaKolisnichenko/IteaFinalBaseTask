@@ -48,16 +48,16 @@
         }
     }
 
-    Game::Game( River& river, Lake& lake, Reservoir& reservoir, Crucian& crucian, Perch& perch, Pike& pike, Bait& bloodworm, Bait& earthworm, Bait& maggot )
-        : river_ { river },
-        lake_ { lake },
-        reservoir_ { reservoir },
-        crucian_ { crucian },
-        perch_ { perch },
-        pike_ { pike },
-        bloodworm_ { bloodworm },
-        earthworm_ { earthworm },
-        maggot_ { maggot }
+    Game::Game( DataFish& fish, DataWater& water, DataBait& bait )
+        : river_ { water.river },
+        lake_ { water.lake },
+        reservoir_ { water.reservoir },
+        crucian_ { fish.crucian },
+        perch_ { fish.perch },
+        pike_ { fish.pike },
+        bloodworm_ { bait.bloodworm },
+        earthworm_ { bait.earthworm },
+        maggot_ { bait.maggot }
 
     {
         paidTime();
@@ -159,8 +159,8 @@
 
     void Game::catching() {
         auto waitTime = std::chrono::milliseconds( 2000 );
-        int maybeCatched { 50 };
-        int catched { 70 };
+        const int maybeCatched { 50 };
+        const int catched { 70 };
         int currentFishWeight;
         std::string currentFishName;
         bool baitPreferenses {};

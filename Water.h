@@ -21,15 +21,15 @@ protected:
 
 class River :public Water {
 public:
-    bool fishPresence( std::string fishName ) override;
+    bool fishPresence( const std::string fishName ) override;
 };
 
 class Lake : public Water {
 public:
-    bool fishPresence( std::string fishName ) override;
+    bool fishPresence( const std::string fishName ) override;
 };
 
 class Reservoir : public Water {
 public:
-    bool fishPresence( std::string fishName ) override;
+    bool fishPresence( const std::string fishName [[maybe_unused]] ) override;
 };

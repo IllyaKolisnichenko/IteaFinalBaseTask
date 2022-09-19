@@ -7,6 +7,7 @@
 #include "Fish.h"
 #include "Bait.h"
 #include "Water.h"
+#include "StructData.h"
 
 
 class Game {
@@ -38,7 +39,7 @@ private:
     void chooseFish( int& currentFishWeight, std::string& currentFishName, bool& baitPreferenses );
 
 public:
-    Game( River& river, Lake& lake, Reservoir& reservoir, Crucian& crucian, Perch& perch, Pike& pike, Bait& bloodworm, Bait& earthworm, Bait& maggot );
+    Game( DataFish& fish, DataWater& water, DataBait& bait );
 
     int getPaidFishWeight();
     int getCurrentFishWeight();

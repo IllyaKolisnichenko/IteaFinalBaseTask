@@ -6,9 +6,7 @@
 #include <string>
 #include <optional>
 #include <sstream>
-#include "Fish.h"
-#include "Water.h"
-#include "Bait.h"
+#include "StructData.h"
 
 class ReadFromFile {
 private:
@@ -16,9 +14,9 @@ private:
     static std::optional <std::vector<std::string>> split( const std::string str, int numberOfParameters, char separator = ' ' );
 
 public:
-    static void readFishFromFile( Crucian& crucian, Perch& perch, Pike& pike );
-    static void readWaterFromFile( River& river, Lake& lake, Reservoir& reservoir );
-    static void readBaitFromFile( Bait& bloodworm, Bait& earthworm, Bait& maggot );
+    static void readFishFromFile( DataFish& fish );
+    static void readWaterFromFile( DataWater& water );
+    static void readBaitFromFile( DataBait& bait );
 };
 
 
@@ -32,7 +30,7 @@ std::optional <std::vector<std::string>> ReadFromFile::readFromFile( const std::
 
     while( std::getline( myFile, currentLine ) )
         result.push_back( currentLine );
-    
+
     return result;
 }
 
@@ -50,42 +48,42 @@ std::optional <std::vector<std::string>> ReadFromFile::split( const std::string 
     return result;
 }
 
-void ReadFromFile::readFishFromFile( Crucian& crucian, Perch& perch, Pike& pike ) {
+void ReadFromFile::readFishFromFile( DataFish& fish ) {
     auto fileData { readFromFile( "Data\\Fish.txt" ) };
     int numberOfParameters { 3 };
     if( fileData != std::nullopt ) {
         auto crucianData { split( fileData.value()[0],numberOfParameters ) };
-        crucian.setFishName( crucianData.value()[0] );
-        crucian.setMinMaxFishWeight( std::stoi( crucianData.value()[1] ), std::stoi( crucianData.value()[2] ) );
+        fish.crucian.setFishName( crucianData.value()[0] );
+        fish.crucian.setMinMaxFishWeight( std::stoi( crucianData.value()[1] ), std::stoi( crucianData.value()[2] ) );
 
         auto perchData { split( fileData.value()[1],numberOfParameters ) };
-        perch.setFishName( perchData.value()[0] );
-        perch.setMinMaxFishWeight( std::stoi( perchData.value()[1] ), std::stoi( perchData.value()[2] ) );
+        fish.perch.setFishName( perchData.value()[0] );
+        fish.perch.setMinMaxFishWeight( std::stoi( perchData.value()[1] ), std::stoi( perchData.value()[2] ) );
 
         auto pikeData { split( fileData.value()[2],numberOfParameters ) };
-        pike.setFishName( pikeData.value()[0] );
-        pike.setMinMaxFishWeight( std::stoi( pikeData.value()[1] ), std::stoi( pikeData.value()[2] ) );
+        fish.pike.setFishName( pikeData.value()[0] );
+        fish.pike.setMinMaxFishWeight( std::stoi( pikeData.value()[1] ), std::stoi( pikeData.value()[2] ) );
     } else {
         std::cout << "Cant read file!" << std::endl;
         system( "pause" );
     }
 }
 
-void ReadFromFile::readWaterFromFile( River& river, Lake& lake, Reservoir& reservoir ) {
+void ReadFromFile::readWaterFromFile( DataWater& water ) {
     auto fileData { readFromFile( "Data\\Water.txt" ) };
     int numberOfParameters { 2 };
     if( fileData != std::nullopt ) {
         auto riverData { split( fileData.value()[0],numberOfParameters ) };
-        river.setWaterName( riverData.value()[0] );
-        river.setcatchingFishChance( std::stoi( riverData.value()[1] ) );
+        water.river.setWaterName( riverData.value()[0] );
+        water.river.setcatchingFishChance( std::stoi( riverData.value()[1] ) );
 
         auto lakeData { split( fileData.value()[1],numberOfParameters ) };
-        lake.setWaterName( lakeData.value()[0] );
-        lake.setcatchingFishChance( std::stoi( lakeData.value()[1] ) );
+        water.lake.setWaterName( lakeData.value()[0] );
+        water.lake.setcatchingFishChance( std::stoi( lakeData.value()[1] ) );
 
         auto reservoirData { split( fileData.value()[2] ,numberOfParameters ) };
-        reservoir.setWaterName( reservoirData.value()[0] );
-        reservoir.setcatchingFishChance( std::stoi( reservoirData.value()[1] ) );
+        water.reservoir.setWaterName( reservoirData.value()[0] );
+        water.reservoir.setcatchingFishChance( std::stoi( reservoirData.value()[1] ) );
 
     } else {
         std::cout << "Cant read file!" << std::endl;
@@ -93,21 +91,21 @@ void ReadFromFile::readWaterFromFile( River& river, Lake& lake, Reservoir& reser
     }
 }
 
-void ReadFromFile::readBaitFromFile( Bait& bloodworm, Bait& earthworm, Bait& maggot ) {
+void ReadFromFile::readBaitFromFile( DataBait& bait ) {
     auto fileData { readFromFile( "Data\\Bait.txt" ) };
     int numberOfParameters { 2 };
     if( fileData != std::nullopt ) {
         auto bloodwormData { split( fileData.value()[0],numberOfParameters ) };
-        bloodworm.setBaitName( bloodwormData.value()[0] );
-        bloodworm.setCatchBonus( stoi( bloodwormData.value()[1] ) );
+        bait.bloodworm.setBaitName( bloodwormData.value()[0] );
+        bait.bloodworm.setCatchBonus( stoi( bloodwormData.value()[1] ) );
 
         auto earthwormData { split( fileData.value()[1],numberOfParameters ) };
-        earthworm.setBaitName( earthwormData.value()[0] );
-        earthworm.setCatchBonus( stoi( earthwormData.value()[1] ) );
+        bait.earthworm.setBaitName( earthwormData.value()[0] );
+        bait.earthworm.setCatchBonus( stoi( earthwormData.value()[1] ) );
 
         auto maggotData { split( fileData.value()[2],numberOfParameters ) };
-        maggot.setBaitName( maggotData.value()[0] );
-        maggot.setCatchBonus( stoi( maggotData.value()[1] ) );
+        bait.maggot.setBaitName( maggotData.value()[0] );
+        bait.maggot.setCatchBonus( stoi( maggotData.value()[1] ) );
 
     } else {
         std::cout << "Cant read file!" << std::endl;

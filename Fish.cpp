@@ -17,19 +17,19 @@ void Fish::setMinMaxFishWeight( int min, int max ) {
     maxFishWeight_ = max;
 }
 
-bool Crucian::baitPreferenses( std::string baitName ) {
+bool Crucian::baitPreferenses( const std::string baitName ) {
     if( baitName == "Maggot" )
         return false;
     return true;
 }
 
-bool Perch::baitPreferenses( std::string baitName ) {
+bool Perch::baitPreferenses( const std::string baitName ) {
     if( baitName == "Bloodworm" || baitName == "Maggot" )
         return false;
     return true;
 }
 
-bool Pike::baitPreferenses( std::string baitName ) {
+bool Pike::baitPreferenses( const std::string baitName [[maybe_unused]] ) {
     return true;
 }
 

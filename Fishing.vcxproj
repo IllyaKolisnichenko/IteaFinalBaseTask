@@ -138,6 +138,7 @@
     <ClInclude Include="Bait.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="StructData.h" />
     <ClInclude Include="ReadFromFile.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Water.h" />
